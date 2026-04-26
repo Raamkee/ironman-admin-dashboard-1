@@ -344,7 +344,7 @@ const Reports = () => {
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border p-6 sm:p-8">
-      <h1 className="text-4xl font-extrabold text-gray-900 mb-8 border-b-4 border-cyan-400 pb-2 inline-block">📊 Reports</h1>
+      <h1 className="text-4xl font-extrabold text-gray-900 mb-8 pb-2 inline-block">Reports</h1>
 
       <div className="bg-gray-50 border rounded-xl p-6 mb-8">
         <div className="flex items-center text-xl font-semibold mb-4">
@@ -489,7 +489,7 @@ const Reports = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className={BRAND_BG_CLASS}>
                 <tr>
-                  {["#", "Order ID", "Order Number", "Status", "Hub Status", "Partner", "Date", "Delivery Time (hrs)"].map((h) => (
+                  {["#", "Order Number", "Status", "Hub Status", "Partner", "Date", "Delivery Time (hrs)"].map((h) => (
                     <th key={h} className={`p-4 text-left text-xs font-bold ${BRAND_COLOR_CLASS} uppercase tracking-wider`}>{h}</th>
                   ))}
                 </tr>
@@ -504,7 +504,7 @@ const Reports = () => {
                   orders.map((o, i) => (
                     <tr key={o.id} className="hover:bg-gray-50">
                       <td className="p-4 text-sm text-gray-500">{(page - 1) * limit + i + 1}</td>
-                      <td className="p-4 text-sm font-medium text-gray-800">{o.id}</td>
+                      {/* <td className="p-4 text-sm font-medium text-gray-800">{o.id}</td> */}
                       <td className="p-4 text-sm text-gray-800">{o.order_number}</td>
                       <td className="p-4"><StatusBadge status={o.status} /></td>
                       <td className="p-4 text-sm text-gray-800">{o.hubStatus}</td>

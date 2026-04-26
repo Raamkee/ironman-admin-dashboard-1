@@ -422,7 +422,7 @@ const DeliveryPartners = () => {
 
       {/* HEADER + SEARCH */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-        <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-cyan-400 pb-1 inline-block">
+        <h2 className="text-2xl font-bold text-gray-800 pb-1 inline-block">
           Delivery Partners Management
         </h2>
 

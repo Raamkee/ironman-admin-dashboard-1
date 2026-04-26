@@ -188,6 +188,7 @@ const Dashboard = () => {
       loadingSetter(true);
       try {
         const res = await fetch(`${BASE_URL}/api/v1/crm/dashboard/${endpoint}${query}`, { method: "GET", headers: authHeaders });
+        console.log(`Fetched ${endpoint} with status:`, res.status);
         if (res.status === 403) {
           localStorage.removeItem("token");
           window.location.href = "/login";

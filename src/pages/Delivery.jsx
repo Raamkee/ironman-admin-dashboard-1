@@ -208,7 +208,7 @@ const Delivery = () => {
   return (
     <div className="p-1 sm:p-2">
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-gray-900 border-b-4 border-cyan-300 pb-1 inline-block">
+        <h1 className="text-3xl font-extrabold text-gray-900 pb-1 inline-block">
           Daily Delivery Overview
         </h1>
         <p className="text-gray-500 mt-1">Deliveries scheduled for the selected period. Total {totalOrders} orders across {totalPartners} partners.</p>

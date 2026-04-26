@@ -13,6 +13,10 @@ import {
 
 const BRAND_COLOR = "#06B6D4";
 
+
+const formatRole = (role) =>
+  role.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+
 const LogoutConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
   if (!isOpen) return null;
 
@@ -53,6 +57,16 @@ const LogoutConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
 
 export default function Layout() {
   const location = useLocation();
+  const [user, setUser] = useState({ name: "", role: "" });
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const userRole = localStorage.getItem("role") || "User";
 
   const [collapsed, setCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -70,6 +84,8 @@ export default function Layout() {
 
   const confirmLogout = () => {
     localStorage.removeItem("auth");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     window.location.replace("/login");
   };
 
@@ -166,10 +182,14 @@ export default function Layout() {
                       <User className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-bold text-gray-900">Tony Stark</span>
+                      <span className="text-sm font-bold text-gray-900">
+                        {user.first_name || "User"}
+                      </span>
+
                       <span className="text-xs text-gray-500 flex items-center">
                         <Shield className="w-3 h-3 mr-1 text-cyan-500" />
-                        Administrator
+                        {/* {user.role ? user.role.replace(/_/g, " ").toUpperCase() : "Role"} */}
+                        {userRole ? formatRole(userRole) : "User"}
                       </span>
                     </div>
                   </div>

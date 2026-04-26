@@ -37,8 +37,24 @@ export default function Login() {
 
             const user = res.data.user;
 
-            if (user.role !== "super_admin") {
-                toast.error("Access denied. Only super admins can login.");
+            // if (user.role !== "super_admin") {
+            //     toast.error("Access denied. Only super admins can login.");
+            //     setLoading(false);
+            //     return;
+            // }
+            console.log("User data from API response");
+            console.log("User roles from API response:", user.roles);
+            const allowedRoles = ["super_admin", "region_manager", "zone_manager", "hub_manager", "store_manager"];
+
+            // if (!allowedRoles.includes(user.roles[0]?.role)) {
+            //     toast.error("Access denied. Unauthorized role.");
+            //     setLoading(false);
+            //     return;
+            // }
+
+            const hasRole = user.roles.some(r => allowedRoles.includes(r.role));
+            if (!hasRole) {
+                toast.error("Access denied. Unauthorized role.");
                 setLoading(false);
                 return;
             }
@@ -47,6 +63,11 @@ export default function Login() {
             localStorage.setItem("token", res.data.accessToken);
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("auth", "true");
+
+            localStorage.setItem("role", res.data.user.roles[0]?.role);
+            console.log("User role stored in localStorage:", res.data.user.roles[0]?.role);
+            const userRole = localStorage.getItem("role") || "user";
+            console.log("Retrieved user role from localStorage:", userRole);
 
             toast.success("Login successful! Welcome back 👋");
 

@@ -7,7 +7,10 @@ import Dashboard from "./pages/Dashboard";
 import Delivery from "./pages/Delivery";
 import Calendar from "./pages/Calendar";
 import Partners from "./pages/Partners";
+import Regions from "./pages/Regions";
+import Zones from "./pages/Zones";
 import Hubs from "./pages/Hubs";
+import Stores from "./pages/Stores";
 import Locations from "./pages/Locations";
 import Users from "./pages/Users";
 import Reports from "./pages/Reports";
@@ -36,7 +39,10 @@ export default function App() {
         <Route path="delivery" element={<Delivery />} />
         <Route path="calendar" element={<Calendar />} />
         <Route path="partners" element={<Partners />} />
+        <Route path="regions" element={<Regions />} />
+        <Route path="zones" element={<Zones />} />
         <Route path="hubs" element={<Hubs />} />
+        <Route path="stores" element={<Stores />} />
         <Route path="locations" element={<Locations />} />
         <Route path="users" element={<Users />} />
         <Route path="reports" element={<Reports />} />

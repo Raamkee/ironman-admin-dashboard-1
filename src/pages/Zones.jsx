@@ -62,7 +62,7 @@ const ConfirmationModal = ({ isOpen, title, message, onConfirm, onCancel, confir
 };
 
 // --- Main HubAdmins Component ---
-const HubAdmins = () => {
+const Zones = () => {
   const [admins, setAdmins] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({});
@@ -88,7 +88,7 @@ const HubAdmins = () => {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/v1/crm/users/hub-admins?search=${encodeURIComponent(
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/crm/users/zone-managers?search=${encodeURIComponent(
           search
         )}&page=${page}&limit=${LIMIT}`,
         {
@@ -240,7 +240,7 @@ const HubAdmins = () => {
   // Prepare modal content dynamically
   const modalConfirmText = modal.newStatus === 'active' ? 'Yes, Activate' : 'Yes, Deactivate';
   const modalConfirmClass = modal.newStatus === 'active' ? 'bg-emerald-600' : 'bg-red-600';
-  const modalTitle = modal.newStatus === 'active' ? 'Activate Hub Administrator' : 'Deactivate Hub Administrator';
+  const modalTitle = modal.newStatus === 'active' ? 'Activate Hub Administrator' : 'Deactivate Zone Administrator';
   const modalMessage = modal.user
     ? `Are you sure you want to change the status of ${modal.user.name} (${modal.user.email}) to ${modal.newStatus.toUpperCase()}? This action will affect their access.`
     : '';
@@ -263,7 +263,7 @@ const HubAdmins = () => {
       {/* HEADER + SEARCH */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
         <h2 className="text-2xl font-bold text-gray-800">
-          Hub Administrators Management
+          Zone Administrators Management
         </h2>
 
         <div className="relative">
@@ -307,7 +307,7 @@ const HubAdmins = () => {
                       className="text-center py-10 text-gray-500 text-sm font-medium"
                     >
                       <UserCog className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                      No hub administrators found matching your criteria.
+                      No zone administrators found matching your criteria.
                     </td>
                   </tr>
                 ) : (
@@ -404,4 +404,4 @@ const HubAdmins = () => {
   );
 };
 
-export default HubAdmins;
+export default Zones;
